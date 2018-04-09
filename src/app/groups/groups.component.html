@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="grid-container">
+    <div class="grid-item main-text" *ngFor="let group of groups_2018">
+      Group: {{group.id}}
+      <hr>
+      <h3 *ngFor="let country of group.countries;let i=index" class="country">{{group.countries[i]}}</h3>
+    </div>
+  </div>    
+</div>

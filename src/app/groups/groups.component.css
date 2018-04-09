@@ -1,0 +1,20 @@
+.main-text{
+    color: #eaeaea;
+    text-decoration: none;
+    background: #292929;
+    position: relative;
+   
+    }
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding: 10px;
+  }
+.grid-item {
+    padding: 20px;
+    text-align: center;
+    border: 5px solid #eaeaea;
+  }
+  .country{
+      border: solid 1px #343434;
+  }

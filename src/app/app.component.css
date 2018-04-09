@@ -1,0 +1,82 @@
+/*navigation css*/
+    nav a{
+    color: #eaeaea;
+    text-decoration: none;
+    padding:0em;
+    margin: 0em 1em;
+    font-size: 1.8em;
+    }
+    nav a:hover{
+    left:-2px;
+    color: #ccf;
+    }
+    nav a:active{
+    left:-2px;
+    color: #aaf;
+    }
+
+    nav{
+    background: #292929;
+    width:80%;
+    position: relative;
+    left: 10%;
+    padding: 1em 0;
+    border-top: solid brown 2px;
+    }
+/*header*/
+    header{
+    color: #eaeaea;
+    text-decoration: none;
+    font-size: 2.2em;
+    background: #292929;
+    width:80%;
+    position: relative;
+    left: 10%;
+    border-top: brown solid 10px;
+    border-top-right-radius:20px;
+    border-top-left-radius: 20px;
+    }
+div.title{
+    padding-left: 3em;
+    padding-bottom: 1em;
+}
+.righty{
+    right: 20px;
+}
+
+.logo{
+  height:50px;
+}
+.foot{
+    color: #eaeaea;
+    text-decoration: none;
+    font-size: 1.1em;
+    background: #292929;
+    width:80%;
+    position: relative;
+    left: 10%;
+    border-bottom: brown solid 10px;
+    border-bottom-right-radius:20px;
+    border-bottom-left-radius: 20px;
+    margin: 0em;
+    padding: 0em;
+    text-align: center;
+}
+.foot a{
+    font-size: 1.2em;
+    color:rosybrown;
+    text-decoration: none;
+    font-weight: bolder;
+    padding-bottom: 5em;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+}
+.countdown{
+    font-size:15px;
+    color: yellowgreen;
+    margin:auto;
+    text-align: center;
+}
