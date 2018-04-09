@@ -11,6 +11,10 @@
   .fixture{
     padding:5px;
   }
+  .fixture:hover{
+    color:orangered;
+    cursor: pointer;
+  }
   .main-text{
     color: #eaeaea;
     text-decoration: none;
