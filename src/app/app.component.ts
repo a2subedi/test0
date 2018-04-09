@@ -8,7 +8,7 @@ import { User } from './user';
 
 export class AppComponent {
   date=new Date;
-  kickoff=new Date(2018,5,14)
+  kickoff=new Date(2018,5,12)
   countdown=this.kickoff.getTime()-this.date.getTime();
   daysLeft=Math.floor(this.countdown/(60*60*24*1000)); 
 }
