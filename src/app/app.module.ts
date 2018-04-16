@@ -12,7 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { MatchesComponent } from './matches/matches.component';
 import { MatchesListService } from './matches/matches-list.service';
 import { GroupsComponent } from './groups/groups.component';
-import { CountdownComponent } from './countdown/countdown.component';
+import { PredictComponent } from './predict/predict.component';
 
 
 @NgModule({
@@ -24,7 +24,8 @@ import { CountdownComponent } from './countdown/countdown.component';
     GroupsComponent,
     RegisterComponent,
     LoginComponent,
-    CountdownComponent
+    PredictComponent,
+    
   ],
   imports: [
     FormsModule,

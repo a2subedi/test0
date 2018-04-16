@@ -2,19 +2,31 @@
     color: #eaeaea;
     text-decoration: none;
     background: #292929;
-    position: relative;
-   
+    position: relative;   
     }
+.main-text:hover{
+  cursor: pointer;
+  background: #404040;
+}
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     padding: 10px;
   }
+  .grid-groups {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
 .grid-item {
-    padding: 20px;
+    padding: 5px;
+    margin: 5px;
     text-align: center;
-    border: 5px solid #eaeaea;
+    border: 2px solid #eaeaea;
   }
   .country{
       border: solid 1px #343434;
   }
+
+.list{
+  color: #afeeee;
+}

@@ -7,7 +7,7 @@
     font-size: 1.8em;
     }
     nav a:hover{
-    left:-2px;
+    left:2px;
     color: #ccf;
     }
     nav a:active{
@@ -41,7 +41,10 @@ div.title{
     padding-bottom: 1em;
 }
 .righty{
-    right: 20px;
+    color: #eaeaea;
+    text-align: right;
+    font-size: 1.8em;
+    display: inline;
 }
 
 .logo{

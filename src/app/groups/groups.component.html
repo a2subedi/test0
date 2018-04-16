@@ -1,9 +1,17 @@
 <div class="container">
   <div class="grid-container">
-    <div class="grid-item main-text" *ngFor="let group of groups_2018">
-      Group: {{group.id}}
-      <hr>
-      <h3 *ngFor="let country of group.countries;let i=index" class="country">{{group.countries[i]}}</h3>
+    <div class="grid-groups">
+      <div class="grid-item main-text" *ngFor="let group of groups_2018" (click)="setGroup(group)">
+        Group: {{group.id}}
+        <hr>
+        <h3 *ngFor="let country of group.countries;let i=index" class="country">{{group.countries[i]}}</h3>
+      </div>
+    </div>
+    <div class="grid-item">
+      <div *ngIf="!activeGroup"><h2>Select a group to see it's details</h2></div>
+      <div *ngIf="activeGroup"><h2>Group {{activeGroup.id}} matches:</h2>
+        <app-matches [myGroup]="activeGroup"></app-matches>       
+      </div>    
     </div>
   </div>    
 </div>

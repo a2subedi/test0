@@ -1,11 +1,8 @@
-<div class="container">
-    <div class="grid-container">
-      <div *ngFor="let group of groups" class="grid-item main-text">
-        <h2>Group : {{group.id}}</h2><hr>
-        <div *ngFor="let game of matches(group);let i = index;" class="fixture" (click)="showDetails(group.id,i,$event)">
-          {{i+1}}:  {{game}}
-          
-        </div>
-      </div>
-  </div>    
+<div *ngFor="let game of matches(myGroup);let i = index;" class="fixture" (click)="showDetails()">
+  {{i+1}}:  {{game}}
 </div>
+<hr><hr>
+<div class="predictions">
+  <h2>Group {{myGroup.id}} predictions({{total}})</h2>
+  
+</div> 

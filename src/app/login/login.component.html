@@ -1,6 +1,22 @@
 <div class="container">
-    <div class="box">
-  </div>
-    
+  <div class="box">
+    <div class="form" *ngIf="!showRegister" >
+      <form action="post" name="login-info" class="form-group" #logininfo="ngForm">
+        <label for="uname">Username</label><input type="text" placeholder="username" name="uname" [(ngModel)]="usrname" class="form-control"><br>
+        <label for="passwd">Password</label><input type="password" placeholder="*******" name="passwd" [(ngModel)]="password" class="form-control"><br>
+        <button type="submit" (click)="isUser()">login</button>
+      </form>
+      <div *ngIf="legal" class="legal">login successful <br>
+        welcome {{users[uid].uname}} !
+      </div>
+      <div *ngIf="!legal" class="illegal">login unsuccessful <br>
+         not welcome
+      </div>      
+    </div>
+    <button (click)="newUser()">register</button>
+    <div *ngIf="showRegister">        
+      <app-register></app-register>
+    </div>
+  </div>    
 </div>
   

@@ -1,0 +1,13 @@
+.form{
+    text-align: center;
+}
+input{
+    margin:5px 0px;
+}
+.legal{
+    color: green;
+    font-size: 2em;
+}
+.illegal{
+    color: red;
+}

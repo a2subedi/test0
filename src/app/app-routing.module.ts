@@ -5,14 +5,14 @@ import { HomeComponent }   from './home/home.component';
 import { NotificationsComponent }      from './notifications/notifications.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { MatchesComponent } from './matches/matches.component';
+import { PredictComponent } from './predict/predict.component';
 import { GroupsComponent } from './groups/groups.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'matches', component: MatchesComponent },
+  { path: 'predict', component: PredictComponent },
   { path: 'notifications', component: NotificationsComponent },
   { path: 'groups' , component: GroupsComponent },
   { path: 'register' , component: RegisterComponent },

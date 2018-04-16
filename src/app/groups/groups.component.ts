@@ -11,7 +11,10 @@ import { Group } from '../group';
 export class GroupsComponent implements OnInit {
 
     groups_2018 = GROUPS;
-    
+    activeGroup='';
+    setGroup(arg){
+      this.activeGroup=arg;
+    }
   constructor() { }
 
   ngOnInit() {
