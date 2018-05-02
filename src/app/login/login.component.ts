@@ -1,4 +1,11 @@
 import { Component, OnInit, EventEmitter,Output,Input} from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { FirebaseAuth } from '@firebase/auth-types';
+import { AuthService } from '../auth.service';
+import { error } from 'util';
+import { ReturnStatement } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -7,46 +14,61 @@ import { Component, OnInit, EventEmitter,Output,Input} from '@angular/core';
 })
 
 export class LoginComponent implements OnInit {
-
-  users:any[]=([
-    {id:1,uname:'test1',passwd:'abcd1'},
-    {id:2,uname:'test2',passwd:'abcd2'},
-    {id:3,uname:'test3',passwd:'abcd3'},
-    {id:4,uname:'test4',passwd:'abcd4'},
-    {id:5,uname:'test5',passwd:'abcd5'},
-    {id:6,uname:'test6',passwd:'abcd6'},
-    {id:7,uname:'test7',passwd:'abcd7'},
-    {id:8,uname:'test8',passwd:'abcd8'}
-  ]);
   
-  usrname:string='';
-  password:string='';
-  legal:boolean=false;
-  uid:number;
-  showRegister:boolean=false;
+  showLogin : boolean =true;
+  showRegister : boolean =false;
+  showLogout : boolean = this.nuser.isLoggedIn();
+  uName : string;
+  pwd : string;
+  pwd2 : string;
+  errmsg: string = '';
+  
+  users: Observable<any[]>;
+  constructor(private db: AngularFireDatabase,private nuser:AuthService) { }
+  
+  getUserData(dataPath): Observable<any[]> {
+    return this.db.list(dataPath).valueChanges();
+  }
 
-  @Output() onLogin = new EventEmitter<string>();
+  loginWithGoogle(){
+    this.nuser.googleLogin();
+    this.showLogout = true;
+  }
+  loginWithEmail(){
+    this.nuser.emailLogin(this.uName,this.pwd).catch((error) =>{
+      this.errmsg = error.code;      
+    });
+    this.showStatus();
+  }
 
-
-  isUser():boolean{
-    for(let i=0;i<this.users.length;++i){
-      if(this.usrname==this.users[i].uname && this.password==this.users[i].passwd){
-        this.uid=i;
-        this.legal=true;
-        this.onLogin.emit('this.usrname');
-        return true;
-      }      
+  register(){
+    if(this.pwd==this.pwd2){
+      this.nuser.emailSignUp(this.uName,this.pwd);
     }
-    this.legal=false;
+    else{
+      this.errmsg='passwords mismatch';
+    }
+  }
+  logout(){
+    this.nuser.logout();
+    this.showLogout = false;
   }
 
-  newUser(){
-    this.showRegister=true;
-  } 
-  
-  constructor() { }
+  showStatus(){
+    console.log(this.nuser.isLoggedIn());
+    if(this.nuser.isLoggedIn()){this.errmsg=''}
+ }
 
-  ngOnInit() {
+  //load div login or register
+    loadLogin(){
+      this.showLogin = true;
+      this.showRegister = false;
+    }
+    loadRegister(){
+      this.showRegister = true;
+      this.showLogin = false;
+    }
+
+  ngOnInit(){
   }
-
 }

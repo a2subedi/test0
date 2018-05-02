@@ -11,3 +11,7 @@ input{
 .illegal{
     color: red;
 }
+.newReg:hover{
+    color: blueviolet;
+    cursor: pointer;    
+}

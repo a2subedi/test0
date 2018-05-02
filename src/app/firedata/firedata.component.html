@@ -1,0 +1,8 @@
+<h2 *ngIf="msg">{{msg}}</h2>
+<div *ngFor="let user of users | async" style="background-color: beige">
+  <h2>Username: <a href="#" target="_blank" >{{user.uName}}</a></h2>
+  <h3>predictions({{user.predictions.length-1}})</h3>
+  <p *ngFor="let predicts of user.predictions;let i=index">
+    {{predicts | json}}
+  </p>
+</div>

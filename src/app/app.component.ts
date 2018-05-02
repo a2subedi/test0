@@ -1,4 +1,5 @@
-import { Component, Output, EventEmitter, } from '@angular/core';
+import { Component, Output, EventEmitter} from '@angular/core';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { User } from './user';
 @Component({
   selector: 'app-root',
@@ -7,20 +8,34 @@ import { User } from './user';
 })
 
 export class AppComponent {
+
+  logged : boolean;
   
-  logged: boolean= false;
-  currentUser: string = 'guest';
 
-  onLogin(fromchild:string){
-    this.currentUser=fromchild;
-    return fromchild;
-  }
+  /*countdown unfinished
+    date = new Date("jun 12, 2018 16:00:00").getTime();
+    now = new Date().getTime();
+    days:number;
+    x = setInterval(function() {
+      let distance = this.date - this.now;         
+      // Find the distance between now an the count down date
+          
+      // Time calculations for days, hours, minutes and seconds
+      this.days = Math.floor(this.distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((this.distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((this.distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((this.distance % (1000 * 60)) / 1000);
+      console.log(distance);
+      this.now+=1000;
+    
+      // Display the result in the element with id="demo"
+    
+      // If the count down is finished, write some text 
+      if (this.distance < 0) {
+        clearInterval(this.x);
+      }
+    }, 1000);
+  
+  /*countdown*/
 
-  date=new Date;
-  kickoff=new Date(2018,5,12)
-  diff=this.kickoff.getTime()-this.date.getTime();
-  secsLeft=Math.floor(this.diff/(1000));
-  minsLeft=Math.floor(this.secsLeft/60);
-  hrsLeft=Math.floor(this.minsLeft/60);
-  daysLeft=Math.floor(this.hrsLeft/24);  
 }

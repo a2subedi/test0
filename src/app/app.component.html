@@ -4,13 +4,13 @@
     <div class="title">Fifa world cup 2018 | Russia </div>
 </div>
 <div class="grid-item countdown">
-  <h3>Time until kick off</h3>{{daysLeft}} days {{hrsLeft%24}} hrs {{minsLeft%60}} mins {{secsLeft%60}} secs
+  <!--h3>Time until kick off</h3>{{days}} days {{hours}} hrs {{minutes}} mins {{seconds}} secs -->
 </div>
 </header>
 <nav>
   <a routerLink="/home" class="lefty">Home</a>
   <a routerLink="/groups" class="lefty">Groups</a>
-  <a routerLink="/predict" class="lefty">Predict</a>   
+  <a routerLink="/predict" class="lefty">Predictions</a>   
   <a routerLink="/notifications" class="lefty">
     <i class="fa fa-bell-o" aria-hidden="true"></i>
   </a>    
@@ -19,10 +19,10 @@
   </a>
   <a routerLink="" class="lefty" *ngIf="logged">Welcome, {{currentUser}}</a>
   <a routerLink="/login" class="lefty" *ngIf="!logged">Welcome {{currentUser}}</a>
-
 </nav>
- 
-<router-outlet (onLogin)="onLogin($event)"></router-outlet>
+
+<router-outlet></router-outlet>
+<!--//footer-->
 <div class="foot">
   <p>By <strong>Asu</strong></p>
   <p>Github : <a href="https://github.com/a2subedi" target="_blank">a2subedi</a></p>
