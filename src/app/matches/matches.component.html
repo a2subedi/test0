@@ -1,8 +1,7 @@
 <div *ngFor="let game of matches(myGroup);let i = index;" class="fixture" (click)="showDetails()">
-  {{i+1}}:  {{game}}
+ <h3 (click)="putPrediction(myGroup.id,game,i)"> {{i+1}}:  {{game}}</h3> 
 </div>
 <hr><hr>
 <div class="predictions">
-  <h2>Group {{myGroup.id}} predictions({{total}})</h2>
-  
-</div> 
+  <h2>Group {{myGroup.id}} predictions({{total}})</h2>  
+</div>

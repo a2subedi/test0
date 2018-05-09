@@ -14,11 +14,11 @@
   <a routerLink="/notifications" class="lefty">
     <i class="fa fa-bell-o" aria-hidden="true"></i>
   </a>    
-  <a routerLink="/login" class="lefty" >
-    <i class="fa fa-user"></i> / <i class="fa fa-user-plus"></i>
+  <a routerLink="/register" class="lefty" >
+    register <i class="fa fa-user-plus"></i>
   </a>
-  <a routerLink="" class="lefty" *ngIf="logged">Welcome, {{currentUser}}</a>
-  <a routerLink="/login" class="lefty" *ngIf="!logged">Welcome {{currentUser}}</a>
+  <a routerLink="" class="lefty" *ngIf="logged">logout {{logged}}</a>
+  <a routerLink="/login" class="lefty" *ngIf="!logged">login {{logged}}<i class="fa fa-user"></i></a>
 </nav>
 
 <router-outlet></router-outlet>

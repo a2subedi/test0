@@ -23,7 +23,7 @@
     "@angular/router": "^5.2.0",
     "@firebase/app": "^0.1.10",
     "angular-font-awesome": "^3.1.2",
-    "angularfire2": "^5.0.0-rc.6.0",
+    "angularfire2": "^5.0.0-rc.7",
     "body-parser": "^1.18.2",
     "connect": "^3.6.6",
     "core-js": "^2.4.1",

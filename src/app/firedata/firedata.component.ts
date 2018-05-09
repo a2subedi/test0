@@ -8,14 +8,12 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./firedata.component.css']
 })
 export class FiredataComponent implements OnInit {
-  msg='loading...';
   users: Observable<any[]>;
   constructor(private db: AngularFireDatabase) { }
   ngOnInit() {
     this.users = this.getUser('/items/registered');
   }
   getUser(dataPath): Observable<any[]> {
-    this.msg='';
     return this.db.list(dataPath).valueChanges();
   }
 }

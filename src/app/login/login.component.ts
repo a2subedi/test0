@@ -5,7 +5,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { FirebaseAuth } from '@firebase/auth-types';
 import { AuthService } from '../auth.service';
 import { error } from 'util';
-import { ReturnStatement } from '@angular/compiler';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -14,61 +15,41 @@ import { ReturnStatement } from '@angular/compiler';
 })
 
 export class LoginComponent implements OnInit {
-  
-  showLogin : boolean =true;
-  showRegister : boolean =false;
-  showLogout : boolean = this.nuser.isLoggedIn();
   uName : string;
   pwd : string;
   pwd2 : string;
   errmsg: string = '';
+  showLogout;
   
-  users: Observable<any[]>;
-  constructor(private db: AngularFireDatabase,private nuser:AuthService) { }
+  constructor(
+    private db: AngularFireDatabase,
+    private nuser:AuthService,
+    private router:Router   ){}
   
-  getUserData(dataPath): Observable<any[]> {
-    return this.db.list(dataPath).valueChanges();
+  setUser(id:string) {
+    this.db.object('/users/'+id+'/userEmail').set(this.nuser.getDetails().email);
   }
 
   loginWithGoogle(){
-    this.nuser.googleLogin();
-    this.showLogout = true;
+    this.nuser.googleLogin().then(success=>{
+      this.setUser(this.nuser.getDetails().uid);
+    });;
   }
   loginWithEmail(){
     this.nuser.emailLogin(this.uName,this.pwd).catch((error) =>{
-      this.errmsg = error.code;      
+      this.errmsg = error.code;  
+    }).then(success=>{
+      this.setUser(this.nuser.getDetails().uid);
     });
-    this.showStatus();
   }
-
-  register(){
-    if(this.pwd==this.pwd2){
-      this.nuser.emailSignUp(this.uName,this.pwd);
-    }
-    else{
-      this.errmsg='passwords mismatch';
-    }
-  }
-  logout(){
+  logoutUser(){
     this.nuser.logout();
-    this.showLogout = false;
   }
-
-  showStatus(){
-    console.log(this.nuser.isLoggedIn());
-    if(this.nuser.isLoggedIn()){this.errmsg=''}
- }
-
+  
   //load div login or register
-    loadLogin(){
-      this.showLogin = true;
-      this.showRegister = false;
-    }
     loadRegister(){
-      this.showRegister = true;
-      this.showLogin = false;
+      this.router.navigate(['/register']);
     }
-
   ngOnInit(){
   }
 }

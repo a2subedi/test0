@@ -1,5 +1,40 @@
-<div class="container">
-    <div class="predicts">
-        <app-firedata></app-firedata>
+<div class="container grid-container"> 
+    <div class="grid-item" >
+        <div *ngIf="aUser.isLoggedIn()">
+            <h1>Put new predictions:</h1>
+            <label for="grp">Select group:</label>
+            <select name="grp" id="grp" (change)="onSelectGroup($event.target.value)">
+                <option>-</option>
+                <option *ngFor="let group of groups_2018;">{{group.id}}</option>
+            </select><br>        
+            <span *ngIf="selected">
+                    <label for="game">Select game:</label>
+                <select name="game" id="game" (change)="onSelectGame($event.target.value)">
+                    <option value=""></option>
+                <option *ngFor="let _game of gamesArray;let n = index">
+                    {{_game}}
+                </option>
+                </select>
+                <br>
+                <label for="score">Enter predicted score: </label>                
+            </span>
+            <input type="text"[(ngModel)]="score"><br>
+            <button (click)="putPredicts()">Submit Prediction</button>
+            <button (click)="removePredicts()">Delete Prediction</button>        
+        </div>  
+        <div *ngIf="!aUser.isLoggedIn()">
+            <p>Please login to put new predictions <br>Error: {{errmsg}}</p>
+        </div>
     </div>
+    <div class="grid-item">
+        <div *ngIf="aUser.isLoggedIn()">
+            <h1>Your Predictions for {{aUser.getDetails().email}}:</h1>
+            <div *ngFor="let predict of predicts | async" style="background-color: beige">
+                {{predict}}
+            </div>
+        </div>
+        <div class="predicts" *ngIf="!aUser.isLoggedIn() && errmsg">
+            <p>You must be logged in to see your predict <br>Error:{{errmsg}}</p>
+        </div>
+    </div>        
 </div>

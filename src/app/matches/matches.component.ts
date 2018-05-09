@@ -1,7 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatchesListService } from './matches-list.service';
 import { Group } from '../group';
 import { GROUPS } from '../mock-groups';
+import { AngularFireDatabase } from 'angularfire2/database'; 
+import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
+import { TiesheetService } from '../tiesheet.service';
 
 @Component({
   selector: 'app-matches',
@@ -9,25 +12,36 @@ import { GROUPS } from '../mock-groups';
   styleUrls: ['./matches.component.css']
 })
 
-
 export class MatchesComponent implements OnInit {
+
+  constructor(private db: AngularFireDatabase,
+    private router : Router,
+    private ts: TiesheetService
+  ) {  }
 
   @Input() myGroup;
   total:number=0;
 
   groups=GROUPS;
-  matches(grp:Group):string[]{
-    return [grp.countries[0]+" vs "+grp.countries[1],grp.countries[2]+" vs "+grp.countries[0],grp.countries[1]+" vs "+grp.countries[2],grp.countries[2]+" vs "+grp.countries[3],grp.countries[0]+" vs "+grp.countries[3],grp.countries[3]+" vs "+grp.countries[1]];
+  matches(arg){
+    return this.ts.games(arg);
   }
   showDetails(){
-    //console.log(a,b);
-    alert("no details available atm.");
+    // no implementation;
+   }
+/**pushData(grpid,i,arg){
+  * console.log('pushing data');
+  * this.db.object('matches/'+grpid+'/'+i).set(arg);
+  * }
+  *  //grabs match from mock-list and posts it to db
+*/
 
+  putPrediction(id,game,index){
+    this.router.navigate(['/predict']);
   }
 
-  constructor() { }
-
   ngOnInit() {
+    
   }
 
 }

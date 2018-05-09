@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 import { FirebaseAuth } from '@firebase/auth-types';
-import * as firebase from 'firebase/app';
+import {firebase} from '@firebase/app';
 import { User } from 'firebase';
 
 @Injectable()
@@ -27,12 +27,12 @@ export class AuthService {
     );
   }
   getDetails(){
-    return this.userDetails;
+    return this.af.auth.currentUser;
   }
 
   googleLogin(){
-      this.af.auth
-      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+    let provider = new firebase.auth.GoogleAuthProvider();
+    return  this.af.auth.signInWithPopup(provider);
   }
   emailLogin(email: string, password: string) {
     return this.af.auth.signInWithEmailAndPassword(email, password)
@@ -50,6 +50,6 @@ export class AuthService {
     }
   logout() {
       this.af.auth.signOut()
-      .then((res) => this.router.navigate(['/']));
+      .then((res) => this.router.navigate(['/login']));
   }
 }

@@ -1,10 +1,13 @@
-export class User{
-    constructor(
-        private name?:string,
-        private age?:number,
-        private address?:string){        
-    }
-    getName() {return this.name;}
-    getAge() {return this.age;}
-    getAddress() {return this.address}
+export class User {
+  displayName?;
+  email;
+  photoURL?;
+  uid;
+  
+  constructor(name,e_mail,photo,id){
+      this.displayName=name;
+      this.email=e_mail;
+      this.photoURL=photo;
+      this.uid=id;
+  }
 }

@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter} from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
-import { User } from './user';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,8 +8,11 @@ import { User } from './user';
 })
 
 export class AppComponent {
-
   logged : boolean;
+  constructor(){
+      }
+  
+  
   
 
   /*countdown unfinished

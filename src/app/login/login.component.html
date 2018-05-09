@@ -1,26 +1,16 @@
 <div class="container">
   <div class="box">
-    <div class="form">
-      <button (click)="showStatus()">Show login status</button>
-      <button *ngIf="showLogout" (click)="logout()">Logout</button>
-      {{showLogout}}
-      
-    </div>
-    <div *ngIf="showLogin" style="text-align: center">
-      <label for="uName">Email</label><input type="text" placeholder="user-email" [(ngModel)]="uName"><br>
-      <label for="pwd">Password</label><input type="password" placeholder="*******" [(ngModel)]="pwd"><br>
+    <div style="text-align: center" *ngIf="!nuser.isLoggedIn()">
+      <label for="uName">Email</label><input type="text" id="uName" placeholder="user-email" [(ngModel)]="uName"><br>
+      <label for="pwd">Password</label><input type="password" id="pwd" placeholder="*******" [(ngModel)]="pwd"><br>
       <p *ngIf="errmsg">{{errmsg}}</p>
       <button (click)="loginWithEmail()">Login</button>
       <button (click)="loginWithGoogle()">Sign in with google</button>
       <h3 class="newReg" (click)="loadRegister()">Not a member ?</h3>
-    </div>
-    <div *ngIf="showRegister" style="text-align: center">
-      <label for="uName">E-mail</label><input type="text" placeholder="username" [(ngModel)]="uName"><br>
-      <label for="pwd">New Password</label><input type="password" placeholder="*******" [(ngModel)]="pwd"><br>
-      <label for="pwd">Confirm Password</label><input type="password" placeholder="*******" [(ngModel)]="pwd2"><br>
-      <p *ngIf="errmsg">{{errmsg}}</p>
-      <button (click)="register()">Register</button><br>
-      <h3 class="newReg" (click)="loadRegister()">Already a member ?</h3>
     </div>    
+    <div *ngIf="nuser.isLoggedIn()">
+      <p>Logout form your account {{nuser.getDetails().email}}</p>
+      <button (click)="logoutUser()">Logout</button>
+      </div>
   </div>    
 </div>

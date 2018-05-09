@@ -1,7 +1,15 @@
 <div class="container">
-    <div class="box">
-      register works for now
-  </div>
-    
+  <div class="box" style="text-align: center" *ngIf="!nuser.isLoggedIn()">
+    <label for="uName">E-mail</label><input type="text" placeholder="username" [(ngModel)]="uName"><br><br>
+    <label for="pwd">New Password</label><input type="password" placeholder="*******" [(ngModel)]="pwd"><br><br>
+    <label for="pwd">Confirm Password</label><input type="password" placeholder="*******" [(ngModel)]="pwd2"><br><br>
+    <p *ngIf="errmsg">{{errmsg}}</p>
+    <button (click)="register()">Register</button><br>or<br>
+    <button (click)="loginWithGoogle()">Login with google</button><br>
+    <h3 class="newReg" (click)="loadLogin()">Already a member ?</h3>
+  </div>  
+  <div *ngIf="nuser.isLoggedIn()">
+    <p>You are alerady logged in with email {{nuser.getDetails().email}} <br>Navigate to "login" tab to logout</p>
+  </div>  
 </div>
   
