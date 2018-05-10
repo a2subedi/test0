@@ -1,7 +1,8 @@
 <div class="container">
   <div class="box">
-    <div class="notifs" *ngFor="let item of notifs;let i=index">
-      {{item}} <button class="rmNotifs" value="delete" (click)="rmNotifs(i)">Delete</button>
+    <div class="notifs" *ngFor="let item of notifsArray | async ;let i=index">
+      {{item}} <button class="rmNotifs" value="delete" (click)="rmNotifs()">Delete</button>
     </div>
+    <div *ngIf="notifsArray==null" class="notifs">No new notifications</div>
   </div>       
 </div>

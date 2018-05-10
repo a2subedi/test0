@@ -1,5 +1,6 @@
 import { Component, Output, EventEmitter} from '@angular/core';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
+import { AuthService } from './auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +9,8 @@ import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 })
 
 export class AppComponent {
-  logged : boolean;
-  constructor(){
-      }
-  
-  
-  
+  logged: boolean;
+  constructor(){} 
 
   /*countdown unfinished
     date = new Date("jun 12, 2018 16:00:00").getTime();

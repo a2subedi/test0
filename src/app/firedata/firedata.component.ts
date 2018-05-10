@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/Observable';
 })
 export class FiredataComponent implements OnInit {
   users: Observable<any[]>;
+  msg;
   constructor(private db: AngularFireDatabase) { }
   ngOnInit() {
     this.users = this.getUser('/items/registered');

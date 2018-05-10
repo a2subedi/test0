@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   pwd2 : string;
   errmsg: string = '';
    
-  constructor(private router : Router,private nuser : AuthService,private db: AngularFireDatabase) { }
+  constructor(private router : Router,public nuser : AuthService,private db: AngularFireDatabase) { }
 
   register(){
     if(this.pwd==this.pwd2){

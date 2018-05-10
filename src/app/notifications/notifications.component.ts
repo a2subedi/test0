@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AuthService } from '../auth.service';
+import { Observable } from '@firebase/util';
 
 @Component({
   selector: 'app-notifications',
@@ -9,14 +12,20 @@ import { Component, OnInit } from '@angular/core';
 
 export class NotificationsComponent implements OnInit {
 
-  public notifs=['notification 1','notification 2','notification 3'];
-  rmNotifs(i){
-    this.notifs.splice(i,1);
-    console.log(this.notifs)
+  constructor( private db: AngularFireDatabase,private uUser: AuthService ) { }
+
+  notifsArray : any ;
+
+  getNotifs(){
+    return this.db.list('/notifications/'+this.uUser.getDetails().uid).valueChanges();
   }
-  constructor() { }
+  rmNotifs(){
+    this.db.object('/notifications/'+this.uUser.getDetails().uid).remove();      
+  }
+  
 
   ngOnInit() {
+   this.notifsArray = this.getNotifs();
   }
 
 }

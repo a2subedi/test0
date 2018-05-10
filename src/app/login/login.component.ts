@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   
   constructor(
     private db: AngularFireDatabase,
-    private nuser:AuthService,
+    public nuser:AuthService,
     private router:Router   ){}
   
   setUser(id:string) {

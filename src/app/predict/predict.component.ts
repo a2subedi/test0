@@ -8,7 +8,6 @@ import { GROUPS } from '../mock-groups';
 import { TiesheetService } from '../tiesheet.service';
 import { Group } from '../group';
 
-
 @Component({
   selector: 'app-predict',
   templateUrl: './predict.component.html',
@@ -18,20 +17,20 @@ export class PredictComponent implements OnInit {
   private groups_2018 = GROUPS;
   score;
   selectedGame: string;
+  total;
 
   predicts: Observable<any[]> ;
   errmsg: string = 'Not logged in';
   selected: Group;
   gamesArray: string[];
 
-  constructor(private aUser : AuthService,
+  constructor(public aUser : AuthService,
     private db: AngularFireDatabase,
     private ts: TiesheetService
   ) {
     if(this.aUser.isLoggedIn()){
       this.predicts = this.getPredicts();      
-      this.errmsg='';
-    }
+      this.errmsg='';}
   }
 
   onSelectGame(e){
@@ -75,10 +74,14 @@ export class PredictComponent implements OnInit {
   }
   
   getPredicts(){
+    this.total = this.db.list('/notifications/'+this.aUser.getDetails().uid+'/total').valueChanges();
     return this.db.list('/predicts/'+this.aUser.getDetails().uid).valueChanges();
   }
+  getTotal(){return  this.db.list('/notifications/'+this.aUser.getDetails().uid+'/total')}
+
   putPredicts(){
    this.db.object('/predicts/'+this.aUser.getDetails().uid+'/'+this.selectedGame).set(this.selectedGame+' : '+this.score);
+   this.db.object('/notifications/'+this.aUser.getDetails().uid+'/'+this.aUser.getDetails().uid).set('you predicted '+this.selectedGame+' '+this.score);
    this.score='';
    
   }
@@ -86,5 +89,5 @@ export class PredictComponent implements OnInit {
     this.db.object('/predicts/'+this.aUser.getDetails().uid+'/'+this.selectedGame).remove();
   }
 
-  ngOnInit() {  }
+  ngOnInit() {  } 
 }

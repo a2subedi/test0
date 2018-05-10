@@ -17,8 +17,7 @@
   <a routerLink="/register" class="lefty" >
     register <i class="fa fa-user-plus"></i>
   </a>
-  <a routerLink="" class="lefty" *ngIf="logged">logout {{logged}}</a>
-  <a routerLink="/login" class="lefty" *ngIf="!logged">login {{logged}}<i class="fa fa-user"></i></a>
+  <a routerLink="/login" class="lefty" *ngIf="!logged">login <i class="fa fa-user"></i></a>
 </nav>
 
 <router-outlet></router-outlet>
